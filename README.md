@@ -21,7 +21,7 @@ Installation:
 
 `npm install`
 
-To Run Test Suite:
+To Run Tests:
 
 `npm test`
 
@@ -30,9 +30,3 @@ To Start Server:
 `npm start`
 
 This will run the app on `http://localhost:3000` by default. Open this URL in your browser to view the application.
-
-Running Tests
-
-To run the unit tests and verify that all components and utility functions work as expected, run:
-
-`npm test`
