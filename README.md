@@ -9,11 +9,11 @@
 5. It is illegal to place patients with the same vision defect into the same rack.
 6. The number of racks is very limited.
 
-You can add your own custom tube or load set of example tubes using button "Load example tubes". Next click "Sort test tubes" button. Your tubes should be sorted and displayed correctly acording to the contrains above.
+## How to Use
+* You can add your own custom test tube or load a set of example tubes by clicking the "Load example tubes" button.
+* Next, click the "Sort test tubes" button. The tubes will be sorted and displayed according to the constraints above.
 
 ## Installation and Setup Instructions
-
-#### Example:
 
 Clone down this repository. You will need `node` and `npm` installed globally on your machine.
 
