@@ -1,6 +1,6 @@
 export type TestTube = {
   id: string;
-  age: number;
+  age?: number;
   company: string;
   district: string;
   visionDefect: string;

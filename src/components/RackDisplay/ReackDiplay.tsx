@@ -10,49 +10,59 @@ import Box from "@mui/material/Box";
 import { RackDisplayProps } from "./types";
 import { tableColumnsTitles } from "./const";
 
-const RackDisplay: React.FC<RackDisplayProps> = ({ racks }) => (
+const RackDisplay: React.FC<RackDisplayProps> = ({ racks, numRacks }) => (
   <Box component="section">
-    {racks.map(
-      (rack) =>
-        Boolean(rack.testTubes.length) && (
-          <TableContainer component={Paper} key={rack.id} sx={{ mb: 1 }}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell
-                    align="center"
-                    sx={{ fontWeight: "bold", bgcolor: "grey.100" }}
-                    colSpan={tableColumnsTitles.length}
-                  >
-                    Rack {rack.id}
+    {Array.from({ length: numRacks }).map((_, index) => (
+      <TableContainer
+        component={Paper}
+        key={index}
+        sx={{ mb: 2, mt: 2, ml: 1, mr: 1 }}
+      >
+        <Table sx={{ minWidth: 650 }} aria-label="rack table">
+          <TableHead>
+            <TableRow>
+              <TableCell
+                align="center"
+                sx={{ fontWeight: "bold", bgcolor: "grey.100" }}
+                colSpan={tableColumnsTitles.length}
+              >
+                Rack {index + 1}
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              {Boolean(racks.length) ? (
+                tableColumnsTitles.map((title, index) => (
+                  <TableCell key={title} align={index ? "right" : "left"}>
+                    {title}
                   </TableCell>
-                </TableRow>
-                <TableRow>
-                  {tableColumnsTitles.map((title, index) => (
-                    <TableCell key={title} align={index ? "right" : "left"}>
-                      {title}
+                ))
+              ) : (
+                <TableCell align={"center"}>
+                  The rack is empty. Add test tubes or load example tubes and
+                  sort them.
+                </TableCell>
+              )}
+            </TableRow>
+          </TableHead>
+          {Boolean(racks.length) && (
+            <TableBody>
+              {racks[index].testTubes.map((tube) => (
+                <TableRow
+                  key={tube.id}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  {Object.values(tube).map((value, index) => (
+                    <TableCell key={value} align={index ? "right" : "left"}>
+                      {value}
                     </TableCell>
                   ))}
                 </TableRow>
-              </TableHead>
-              <TableBody>
-                {rack.testTubes.map((tube) => (
-                  <TableRow
-                    key={tube.id}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    {Object.values(tube).map((value, index) => (
-                      <TableCell key={value} align={index ? "right" : "left"}>
-                        {value}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        )
-    )}
+              ))}
+            </TableBody>
+          )}
+        </Table>
+      </TableContainer>
+    ))}
   </Box>
 );
 

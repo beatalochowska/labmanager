@@ -8,20 +8,16 @@ import Button from "@mui/material/Button";
 import { exampleTubes } from "../TestTubeForm/const";
 import Box from "@mui/material/Box";
 import TubesDisplay from "../TubesDisplay/TubesDisplay";
+import { numRacks } from "./const";
 
 const SampleSorter: React.FC = () => {
   const [testTubes, setTestTubes] = useState<TestTube[]>([]);
   const [racks, setRacks] = useState<Rack[]>([]);
-  const [renderLoadTubesButton, setRenderLoadTubesButton] =
+  const [isLoadButtonRendered, setIsLoadButtonRendered] =
     useState<boolean>(true);
-  const [numRacks, setNumRacks] = useState<number>(5); // TO DO: Add input field for numRacks
 
   useEffect(() => {
-    if (testTubes.length === 0) {
-      setRenderLoadTubesButton(true);
-    } else {
-      setRenderLoadTubesButton(false);
-    }
+    setIsLoadButtonRendered(testTubes.length === 0);
   }, [testTubes]);
 
   const addTestTube = (testTube: TestTube) =>
@@ -45,7 +41,7 @@ const SampleSorter: React.FC = () => {
     >
       <h2>Sample Sorter</h2>
       <TestTubeForm onAddTestTube={addTestTube} />
-      {renderLoadTubesButton && (
+      {isLoadButtonRendered && (
         <Button variant="outlined" onClick={handleAddExampleTubes}>
           Load example tubes
         </Button>
@@ -53,7 +49,7 @@ const SampleSorter: React.FC = () => {
       <Button variant="contained" onClick={handleSort}>
         Sort Test Tubes
       </Button>
-      {Boolean(racks.length) && <RackDisplay racks={racks} />}
+      <RackDisplay racks={racks} numRacks={numRacks} />
       {Boolean(testTubes.length) && <TubesDisplay tubes={testTubes} />}
     </Box>
   );

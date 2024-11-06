@@ -12,8 +12,8 @@ import { tableColumnsTitles } from "../RackDisplay/const";
 
 const TubesDisplay: React.FC<TubesDisplayProps> = ({ tubes }) => (
   <Box component="section">
-    <TableContainer component={Paper} sx={{ mb: 1 }}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+    <TableContainer component={Paper} sx={{ mb: 2, mt: 2, ml: 1, mr: 1 }}>
+      <Table sx={{ minWidth: 650 }} aria-label="available tubes table">
         <TableHead>
           <TableRow>
             <TableCell

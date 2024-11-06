@@ -1,4 +1,5 @@
 import { TestTube } from "./types";
+
 export const getTubesInputs = (formState: TestTube) => [
   { name: "id", value: formState.id, label: "ID", required: true },
   {
@@ -31,13 +32,14 @@ export const getTubesInputs = (formState: TestTube) => [
 
 export const defaultTubeState: TestTube = {
   id: "",
-  age: 0,
+  age: undefined,
   company: "",
   district: "",
   visionDefect: "",
 };
 
 export const exampleTubes: TestTube[] = [
+  //TO DO: load data from data base instead of hardcoding it.
   {
     id: "1",
     age: 20,
